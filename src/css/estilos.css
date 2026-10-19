@@ -1,0 +1,312 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a1a;
+  color: #f4f1ea;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.contenedor-app {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.titulo-app {
+  color: #ff9e3b;
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.rejilla-app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  align-items: stretch;
+}
+
+@media (max-width: 720px) {
+  .rejilla-app {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background-color: #262626;
+  border: 3px solid #ff7b00;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(255, 123, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.panel--izquierda {
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.panel--derecha {
+  align-items: center;
+  text-align: center;
+}
+
+.caja-formulario {
+  background-color: #333333;
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.caja-formulario__titulo {
+  color: #ffd166;
+  font-size: 16px;
+  margin: 0 0 14px 0;
+  text-align: center;
+}
+
+.caja-formulario__entradas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.caja-formulario__error {
+  color: #ff6b6b;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.grupo-entrada {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.grupo-entrada__etiqueta {
+  font-size: 12px;
+  color: #ffd166;
+  font-weight: 600;
+}
+
+.grupo-entrada__campo {
+  background-color: #1a1a1a;
+  border: 2px solid #555;
+  border-radius: 8px;
+  color: #f4f1ea;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.grupo-entrada__campo:focus {
+  border-color: #ff7b00;
+}
+
+.tarjeta-jugador {
+  background-color: rgba(255, 123, 0, 0.1);
+  border-left: 4px solid #ff7b00;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: left;
+}
+
+.tarjeta-jugador__titulo {
+  margin: 0 0 8px 0;
+  color: #ffd166;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.tarjeta-jugador__texto {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #f4f1ea;
+}
+
+.escenario-dado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.dado-escena {
+  width: 120px;
+  height: 120px;
+  perspective: 600px;
+  position: relative;
+  cursor: pointer;
+}
+
+.dado-escena--rebote {
+  animation: caidaImpacto 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes caidaImpacto {
+  0% { transform: translateY(-25px); }
+  40% { transform: translateY(8px); }
+  70% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.dado-cubo {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.dado-cara {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 35% 35%, #2c2c2c, #111111);
+  border: 2px solid #ff7b00;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+  display: grid;
+  padding: 14px;
+  user-select: none;
+}
+
+.dado-cara--1 { transform: rotateY(0deg) translateZ(59px); grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
+.dado-cara--2 { transform: rotateY(180deg) translateZ(59px); grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
+.dado-cara--3 { transform: rotateY(90deg) translateZ(59px); grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
+.dado-cara--4 { transform: rotateY(-90deg) translateZ(59px); grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
+.dado-cara--5 { transform: rotateX(90deg) translateZ(59px); grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
+.dado-cara--6 { transform: rotateX(-90deg) translateZ(59px); grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
+
+.dado-punto {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle at 30% 30%, #ffd166, #ff7b00);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 158, 59, 0.8), inset -1px -1px 3px rgba(0,0,0,0.6);
+  align-self: center;
+  justify-self: center;
+}
+
+.dado-punto--centro { grid-area: 2 / 2; }
+.dado-punto--arriba-izq { grid-area: 1 / 1; }
+.dado-punto--abajo-der { grid-area: 3 / 3; }
+.dado-punto--arriba-der { grid-area: 1 / 3; }
+.dado-punto--abajo-izq { grid-area: 3 / 1; }
+.dado-punto--medio-izq { grid-area: 2 / 1; }
+.dado-punto--medio-der { grid-area: 2 / 3; }
+
+.sombra-dado {
+  width: 100px;
+  height: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  margin: 12px auto 0 auto;
+  filter: blur(8px);
+  transition: transform 1.5s ease, opacity 1.5s ease;
+}
+
+.sombra-dado--animada {
+  transform: scale(0.6) translateY(15px);
+  opacity: 0.3;
+}
+
+.panel-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.panel-acciones__resultado {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffd166;
+  letter-spacing: 0.5px;
+}
+
+.boton-accion {
+  background-color: #ff7b00;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 50px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.boton-accion:hover:not(:disabled) {
+  background-color: #ff9e3b;
+}
+
+.boton-accion:active:not(:disabled) {
+  background-color: #e06c00;
+}
+
+.boton-accion:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mensaje-juego {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.mensaje-juego--malo { color: #ff6b6b; background-color: rgba(255, 107, 107, 0.12); }
+.mensaje-juego--bueno { color: #4ecdc4; background-color: rgba(78, 205, 196, 0.12); }
+.mensaje-juego--maximo { color: #ffd166; background-color: rgba(255, 209, 102, 0.15); box-shadow: 0 0 10px rgba(255,209,102,0.2); }
+
+.dado-escena--rebote {
+  animation: caidaImpacto 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes caidaImpacto {
+  0% { 
+    transform: translateY(-15px) scale(0.95); 
+    opacity: 0.8;
+  }
+  60% { 
+    transform: translateY(4px) scale(1.02); 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(0) scale(1); 
+    opacity: 1;
+  }
+}
